@@ -87,8 +87,11 @@ app.MapControllers();
 app.MapHub<AttendanceHub>("/attendanceHub");
 
 // ✅ Root endpoint
-app.MapGet("/", () =>
-    "🚀 Hostel Student Tracking API is running!\n✅ Swagger → /swagger\n✅ WebSocket Hub → ws://localhost:5071/attendanceHub");
+app.MapGet("/", async context =>
+{
+    context.Response.Redirect("/swagger");
+    await Task.CompletedTask;
+});
 
 // ✅ Start the app
 app.Run();
